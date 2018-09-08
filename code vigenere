@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author laptop4g
+ */
+public class vigin {
+    
+    public static String nhap (){
+       String st=new Scanner (System.in).nextLine();
+       return st;
+        
+       }
+//    ASCII: "H" is 72 && "S" is 83
+	//	((72-65) + (83-65)) % 26 + 65 >> Encrypted "Z"
+      public static String LapMa(String key,String BR){
+          String st="";
+           key=key.toUpperCase();
+            BR=BR.toUpperCase();
+          for(int i=0,j=0;i<BR.length();i++){
+             char tam=BR.charAt(i);
+             st+=(char)(((tam-65)+(key.charAt(j)-65))%26+65);
+             j=++j%key.length();
+          }
+          return st;
+      }
+      //	ASCII: "Z" is 90 && "S" is 83
+	//	(90-83+26) % 26 + 65 >> Encrypted "Z"
+      public static String  GiaiMa(String key,String ma){
+         String st="";
+         key=key.toUpperCase();
+            ma=ma.toUpperCase();
+         for(int i=0,j=0;i<ma.length();i++){
+             char tam=ma.charAt(i);
+             st+=(char)((tam-key.charAt(i)+26)%26+65);
+             j=++j%key.length();
+             
+         }
+         return st;
+      }
+      public static void menu(){
+          System.out.println("mã hoá bằng vigenere");
+          System.out.println("1.lập mã");
+          System.out.println("2. giải mã");
+          System.out.println("3.thoát");
+          System.out.println("mời thím lựa chọn");
+          int chon= new Scanner(System.in).nextInt();
+          switch(chon){
+              case 1:
+                  System.out.print("nhập khoá: ");
+                  String key=nhap();
+                  System.out.print("nhập bản rõ: ");
+                  String BR=nhap();
+                  System.out.println("từ mã cần tìm là: "+LapMa(key,BR));
+                  break;
+              case 2:
+                  System.out.print("nhập khoá: ");
+                  String key1=nhap();
+                  System.out.print("nhập bản rõ: ");
+                  String ma=nhap();
+                  System.out.println("từ mã cần tìm là: "+GiaiMa(key1,ma));
+                  break;
+              case 3:
+                  System.err.println("cảm ơn thím đã dùng phần mềm");
+                  System.exit(0);
+                  break;
+                  
+          }
+      }
+    public static void main(String[] args) {
+       while(true){
+           menu();
+       }
+
+    }
+}
